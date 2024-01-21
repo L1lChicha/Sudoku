@@ -21,7 +21,24 @@ namespace sudoku
     {
         public Statistics()
         {
+            PlayerStatistics playerStatistics = new PlayerStatistics("player1");
             InitializeComponent();
+
+            playerStatistics.RecordLevelCompletion("Easy", 176);
+            playerStatistics.RecordLevelCompletion("Middle", 1875);
+            playerStatistics.RecordLevelCompletion("Easy",43564);
+            playerStatistics.RecordLevelCompletion("Hard",6546);
+            playerStatistics.RecordLevelCompletion("Middle",543);
+
+            int easy = playerStatistics.GetLevelCompletionCount("Easy");
+            int middle = playerStatistics.GetLevelCompletionCount("Middle");
+            int hard = playerStatistics.GetLevelCompletionCount("Hard");
+
+            easyLevelCountLabel.Content = easy;
+            middleLevelCountLabel.Content = middle;
+            hardLevelCountLabel.Content = hard;
+
+
         }
     }
 }
