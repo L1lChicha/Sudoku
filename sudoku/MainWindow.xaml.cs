@@ -31,14 +31,41 @@ namespace sudoku
 
         private void statisticsButton_Click(object sender, RoutedEventArgs e)
         {
-            Statistics statistics = new Statistics();
-            statistics.Show();
+
+            if (putName())
+            {
+                Statistics statistics = new Statistics();
+                statistics.Show();
+            }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround();
-            playGround.Show();
+
+            if (putName())
+            {
+
+                LevelSelect levelSelect = new LevelSelect();
+                levelSelect.Show();
+
+            }
+        }
+
+
+
+
+        public bool putName()
+        {
+            if (nameTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Put nickname in the field","", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
