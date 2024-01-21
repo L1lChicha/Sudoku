@@ -1,0 +1,22 @@
+﻿<Window x:Class="sudoku.MoreData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sudoku"
+        mc:Ignorable="d"
+        Title="More data about player" Height="200" Width="550" ResizeMode="NoResize" WindowStartupLocation="Manual">
+    <Grid>
+        <Label Content="Easy level " HorizontalAlignment="Left" Margin="19,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="88"/>
+        <Label Content="Middle level" HorizontalAlignment="Left" Margin="107,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="104"/>
+        <Label Content="Hard level" HorizontalAlignment="Left" Margin="216,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="106"/>
+        <Label Content="Average time" HorizontalAlignment="Left" Margin="327,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="124"/>
+        <Label Content="All time" HorizontalAlignment="Left" Margin="456,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="84"/>
+        <Label x:Name="easyLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="24,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+        <Label x:Name="middleLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="120,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+        <Label x:Name="hardLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="230,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+        <Label x:Name="averageTimeLabel" Content="Label" HorizontalAlignment="Left" Margin="350,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="459,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+
+    </Grid>
+</Window>

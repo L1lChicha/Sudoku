@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="MainWindow" Height="900" Width="1900">
+        Title="Sudoku" Height="900" Width="1600" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="PLAY" HorizontalAlignment="Center" Margin="0,524,0,0" VerticalAlignment="Top" Height="114" Width="348" FontSize="48"/>
+        <Button Content="PLAY" HorizontalAlignment="Center" Margin="0,524,0,0" VerticalAlignment="Top" Height="114" Width="348" FontSize="48" Click="Button_Click"/>
         <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,169,0,0" VerticalAlignment="Top" Width="514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
         <TextBox HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Put your nickname" Height="83" Margin="0,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="514" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLines="1"/>
-        <Button Content="RANKS" HorizontalAlignment="Left" Margin="599,668,0,0" VerticalAlignment="Top" Height="114" Width="325" FontSize="48"/>
-        <Button Content="STATISTICS" HorizontalAlignment="Left" Margin="1003,668,0,0" VerticalAlignment="Top" Height="114" Width="325" FontSize="48"/>
+        <Button x:Name="ranksButton" Content="RANKS" HorizontalAlignment="Center" Margin="0,550,400,0" VerticalAlignment="Center" Height="114" Width="325" FontSize="48" Click="ranksButton_Click"/>
+        <Button x:Name="statisticsButton" Content="STATISTICS" HorizontalAlignment="Center" Margin="400,550,0,0" VerticalAlignment="Center" Height="114" Width="325" FontSize="48" Click="statisticsButton_Click"/>
 
     </Grid>
 </Window>

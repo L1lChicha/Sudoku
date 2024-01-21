@@ -19,9 +19,26 @@ namespace sudoku
         public MainWindow()
         {
             InitializeComponent();
-            WindowState = WindowState.Maximized;
+           
+            
+        }
 
+        private void ranksButton_Click(object sender, RoutedEventArgs e)
+        {
+            ranks ranks = new ranks();
+            ranks.Show();
+        }
 
+        private void statisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Statistics statistics = new Statistics();
+            statistics.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PlayGround playGround = new PlayGround();
+            playGround.Show();
         }
     }
 }
