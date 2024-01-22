@@ -32,11 +32,13 @@ namespace sudoku
        
             YourDataItemList = new List<YourDataItem>
             {
-                new YourDataItem { position = "1", name = "Mark", score= "4354" },
-                new YourDataItem { position = "2", name= "Ilya", score = "23" }
+                new YourDataItem { position = "1", name = "Mark", time= "3:21" },
+                new YourDataItem { position = "2", name= "Ilya", time = "4:32" }
             };
 
             rankingList.ItemsSource = YourDataItemList;
+
+             
 
         }
 
@@ -53,6 +55,8 @@ namespace sudoku
 
                 moreData.Show();
                 rankingList.SelectedItem = null;
+
+
             }
         }
 
@@ -63,8 +67,12 @@ namespace sudoku
             public string position { get; set; }
 
             public string name { get; set; }
-            public string score { get; set; }
+            public string time { get; set; }
 
         }
+
+        
+
+       
     }
 }
