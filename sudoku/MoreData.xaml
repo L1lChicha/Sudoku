@@ -11,12 +11,12 @@
         <Label Content="Middle level" HorizontalAlignment="Left" Margin="107,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="104"/>
         <Label Content="Hard level" HorizontalAlignment="Left" Margin="216,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="106"/>
         <Label Content="Average time" HorizontalAlignment="Left" Margin="327,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="124"/>
-        <Label Content="Score" HorizontalAlignment="Left" Margin="456,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="84"/>
+        <Label Content="All time" HorizontalAlignment="Left" Margin="456,19,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="84"/>
         <Label x:Name="easyLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="24,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
         <Label x:Name="middleLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="120,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
         <Label x:Name="hardLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="230,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
         <Label x:Name="averageTimeLabel" Content="Label" HorizontalAlignment="Left" Margin="350,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
-        <Label x:Name="scoreLabel" Content="Label" HorizontalAlignment="Left" Margin="459,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="459,92,0,0" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
 
     </Grid>
 </Window>
