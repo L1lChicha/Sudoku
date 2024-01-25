@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,22 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static sudoku.ranks;
 
 namespace sudoku
 {
     /// <summary>
-    /// Логика взаимодействия для PlayGround.xaml
+    /// Логика взаимодействия для MoreData.xaml
     /// </summary>
-    public partial class PlayGround : Window
+    public partial class MoreData : Window
     {
-        public PlayGround()
+        public MoreData(YourDataItem item)
         {
             InitializeComponent();
+
+
+          
         }
 
-        private void pauseButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }
