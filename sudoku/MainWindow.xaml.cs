@@ -37,10 +37,8 @@ namespace sudoku
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
             PlayGround playGround = new PlayGround();
             playGround.Show();
-            
         }
     }
 }
