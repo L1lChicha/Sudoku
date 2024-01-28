@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace sudoku
 {
@@ -22,6 +24,7 @@ namespace sudoku
     /// 
     public partial class PlayGround : Window
     {
+        public int numberOfEmptyCells = 1;
         public static int attempt = 1;
         public static Button currentButton = null;
         public static Button previousButton = null;
@@ -29,11 +32,15 @@ namespace sudoku
         private int[,] puzzle = new int[9, 9];
         public static int currentButtonRow;
         public static int currentButtonCol;
+        private DispatcherTimer timer = new DispatcherTimer();
+        private int secondsElapsed = 0;
+        public bool isPaused = false;
 
         public PlayGround()
         {
             InitializeComponent();
             Grid playGroundGrid = FindName("playGroundGrid") as Grid;
+            Label timerLabel = FindName("timerLabel") as Label;
 
             sudoku = GenerateSudoku();
 
@@ -42,11 +49,31 @@ namespace sudoku
 
             Array.Copy(sudoku, puzzle, sudoku.Length);
 
-            RemoveNumbers(puzzle, 20);
+            RemoveNumbers(puzzle, numberOfEmptyCells);
 
 
             CreatePlayGround(playGroundGrid, puzzle);
 
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+
+            timer.Start();
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            secondsElapsed++;
+
+            if(secondsElapsed < 3600)
+            {
+                timerLabel.Content = TimeSpan.FromSeconds(secondsElapsed).ToString(@"mm\:ss");
+            }
+            else
+            {
+                timerLabel.Content = TimeSpan.FromSeconds(secondsElapsed).ToString(@"hh\:mm\:ss");
+            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -79,31 +106,62 @@ namespace sudoku
         {
             if (sender is Button button)
             {
-                if (int.TryParse(button.Content.ToString(), out int num))
+                if (int.TryParse(button.Content.ToString(), out int num) && currentButton != null)
                 {
-                    TryPutNumInButton(currentButton, num);
+                    TryPutNumInButton(num);
                 }
             }
 
         }
 
-        public void TryPutNumInButton(Button button, int num)
+        public void TryPutNumInButton(int num)
         {
+
             if (sudoku[currentButtonRow, currentButtonCol] == num)
             {
                 puzzle[currentButtonRow, currentButtonCol] = num;
                 currentButton.Content = num;
                 currentButton.IsEnabled = false;
                 currentButton.Background = Brushes.White;
+                numberOfEmptyCells--;
+
+                if(numberOfEmptyCells == 0)
+                {
+                    SudokuComplited();
+                    
+                }
             }
             else
             {
                 currentButton.Content = num;
                 currentButton.Background = Brushes.Red;
-                MessageBox.Show("Grid position:\n" + currentButtonRow + " " + currentButtonCol + "\nSudoku number:\n" + sudoku[currentButtonRow, currentButtonCol]);
+                //MessageBox.Show("Grid position:\n" + currentButtonRow + " " + currentButtonCol + "\nSudoku number:\n" + sudoku[currentButtonRow, currentButtonCol]);
             }
+            
         }
 
+
+        public void SudokuComplited()
+        {
+            timer.Stop();
+            timerLabel.Content = "Congratulations!!! " + secondsElapsed;
+            pauseButton.IsEnabled = false;
+            try
+            {
+                // Добавление информации в файл (создание нового, если не существует)
+                using (StreamWriter writer = new StreamWriter("statistics.txt", true, Encoding.UTF8))
+                {
+                    writer.WriteLine("Новая информация");
+                    // Дополнительные строки или данные, которые вы хотите добавить
+                }
+
+                MessageBox.Show("Информация успешно добавлена в файл.", "Успех");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка");
+            }
+        }
 
 
         public void CreatePlayGround(Grid grid, int[,] puzzle)
@@ -367,6 +425,78 @@ namespace sudoku
             }
         }
 
+        private void Pause_Click(object sender, RoutedEventArgs e)
+        {
+            if(isPaused)
+            {
+                foreach (UIElement element in playGroundGrid.Children)
+                {
+                    if (element is Border)
+                    {
+                        Border border = (Border)element;
 
+                        // Получаем первый (и единственный) дочерний элемент в Border
+                        UIElement borderChild = border.Child;
+
+                        if (borderChild is Button)
+                        {
+                            Button button = (Button)borderChild;
+                            button.Foreground = Brushes.Black;
+                            if(button.Content != "")
+                            {
+                                button.IsEnabled = false;
+                            }
+                            else
+                            {
+                                button.IsEnabled = true;
+                            }
+                        }
+                    }
+                }
+
+                foreach (UIElement element in insertPanel.Children)
+                {
+                    if (element is Button)
+                    {
+                        Button button = (Button)element;
+                        button.IsEnabled = true;
+                    }
+                }
+                isPaused = false;
+                pauseButton.Content = "Pause";
+                timer.Start();
+            }
+            else
+            {
+                timer.Stop();
+                foreach (UIElement element in playGroundGrid.Children)
+                {
+                    if (element is Border)
+                    {
+                        Border border = (Border)element;
+
+                        // Получаем первый (и единственный) дочерний элемент в Border
+                        UIElement borderChild = border.Child;
+
+                        if (borderChild is Button)
+                        {
+                            Button button = (Button)borderChild;
+                            button.Foreground = Brushes.White;
+                            button.IsEnabled = false;
+                        }
+                    }
+                }
+                foreach(UIElement element in insertPanel.Children)
+                {
+                    if (element is Button)
+                    {
+                        Button button = (Button)element;
+                        button.IsEnabled = false;
+                    }
+                }
+                pauseButton.Content = "Unpause";
+                isPaused = true;
+            } 
+        }
     }
 }
