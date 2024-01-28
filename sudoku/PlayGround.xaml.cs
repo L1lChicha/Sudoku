@@ -35,12 +35,16 @@ namespace sudoku
         private DispatcherTimer timer = new DispatcherTimer();
         private int secondsElapsed = 0;
         public bool isPaused = false;
+        public Label timerLabel;
+        public Grid playGroundGrid;
+        public Panel insertPanel;
 
         public PlayGround()
         {
             InitializeComponent();
-            Grid playGroundGrid = FindName("playGroundGrid") as Grid;
-            Label timerLabel = FindName("timerLabel") as Label;
+            playGroundGrid = FindName("PlayGroundGrid") as Grid;
+            timerLabel = FindName("TimerLabel") as Label;
+            insertPanel = FindName("InsertPanel") as Panel;
 
             sudoku = GenerateSudoku();
 
