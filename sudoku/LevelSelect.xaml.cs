@@ -19,7 +19,7 @@ namespace sudoku
     /// </summary>
     public partial class LevelSelect : Window
     {
-        PlayGround playGround = new PlayGround();
+        
 
         public LevelSelect()
         {
@@ -31,18 +31,21 @@ namespace sudoku
 
         private void easyRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            PlayGround playGround = new PlayGround();
             playGround.Show();
             Close();
         }
 
         private void middleRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            PlayGround playGround = new PlayGround();
             playGround.Show();
             Close();
         }
 
         private void hardRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            PlayGround playGround = new PlayGround();
             playGround.Show();
             Close();
         }

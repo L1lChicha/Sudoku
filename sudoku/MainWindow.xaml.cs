@@ -45,14 +45,11 @@ namespace sudoku
 
             if (putName())
             {
-
+                Tools.currentNickname = nameTextBox.Text;
                 LevelSelect levelSelect = new LevelSelect();
                 levelSelect.ShowDialog();
                 Close();
             }
-
-         
-
         }
 
 
