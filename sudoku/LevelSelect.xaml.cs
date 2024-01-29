@@ -29,22 +29,26 @@ namespace sudoku
           
         }
 
-        private void easyRadioButton_Checked(object sender, RoutedEventArgs e)
+
+        private void easyLevelButton_Click(object sender, RoutedEventArgs e)
         {
             playGround.Show();
             Close();
         }
 
-        private void middleRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void middleLevelButton_Click(object sender, RoutedEventArgs e)
         {
             playGround.Show();
             Close();
         }
 
-        private void hardRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void hardLevelButton_Click(object sender, RoutedEventArgs e)
         {
             playGround.Show();
+            
             Close();
         }
+
+        
     }
 }

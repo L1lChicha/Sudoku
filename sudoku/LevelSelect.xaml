@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="LevelSelect" Height="200" Width="150" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
-        <Label Content="Select difficulty" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
-        <RadioButton x:Name="easyRadioButton" Content="Easy" HorizontalAlignment="Left" Margin="44,66,0,0" VerticalAlignment="Top" Checked="easyRadioButton_Checked"/>
-        <RadioButton x:Name="middleRadioButton" Content="Middle" HorizontalAlignment="Left" Margin="44,102,0,0" VerticalAlignment="Top" Checked="middleRadioButton_Checked"/>
-        <RadioButton x:Name="hardRadioButton" Content="Hard" HorizontalAlignment="Left" Margin="44,135,0,0" VerticalAlignment="Top" Checked="hardRadioButton_Checked"/>
+        
+        Title="LevelSelect" Height="273" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <StackPanel>
+            <Label Content="Select difficulty" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontFamily="Arial Black"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0" Orientation="Horizontal">
+                <Button x:Name="easyLevelButton" Content="Easy level" HorizontalAlignment="Left" Width="160" Margin="0,0,20,0" Click="easyLevelButton_Click" Height="60" FontSize="22"/>
+                <Button x:Name="middleLevelButton" Content="Middle level" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="0,0,20,0" Click="middleLevelButton_Click" Height="60" FontSize="22"/>
+                <Button x:Name="hardLevelButton" Content="Hard level" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Click="hardLevelButton_Click" Height="60" FontSize="22"/>
+            </StackPanel>
 
+        </StackPanel>
     </Grid>
 </Window>
