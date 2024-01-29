@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+//строка 161
 
 namespace sudoku
 {
@@ -38,6 +40,8 @@ namespace sudoku
         public Label timerLabel;
         public Grid playGroundGrid;
         public Panel insertPanel;
+        private int harmode = 2;
+        private int score = 1000;
 
         public PlayGround()
         {
@@ -150,21 +154,11 @@ namespace sudoku
             timer.Stop();
             timerLabel.Content = "Congratulations!!! " + secondsElapsed;
             pauseButton.IsEnabled = false;
-            try
-            {
-                // Добавление информации в файл (создание нового, если не существует)
-                using (StreamWriter writer = new StreamWriter("statistics.txt", true, Encoding.UTF8))
-                {
-                    writer.WriteLine("Новая информация");
-                    // Дополнительные строки или данные, которые вы хотите добавить
-                }
 
-                MessageBox.Show("Информация успешно добавлена в файл.", "Успех");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка");
-            }
+
+            Tools.AddInformation(secondsElapsed, score, harmode);
+
+            //Вызов окна для ильи
         }
 
 
