@@ -58,7 +58,7 @@ namespace sudoku
             easyLevelCountLabel.Content = easy;
             middleLevelCountLabel.Content = middle;
             hardLevelCountLabel.Content = hard;*/
-
+            ///
 
         }
 
