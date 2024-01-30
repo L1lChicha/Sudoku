@@ -19,10 +19,31 @@ namespace sudoku
     /// </summary>
     public partial class Statistics : Window
     {
+
+        Label nameLabel, easyLevelCountLabel, middleLevelCountLabel, hardLevelCountLabel, bestTimeLabel, scoreLabel;
         public Statistics()
         {
-            PlayerStatistics playerStatistics = new PlayerStatistics("player1");
             InitializeComponent();
+
+            InitializeLabels();
+
+            PrepareData();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*PlayerStatistics playerStatistics = new PlayerStatistics("player1");
+            
 
             playerStatistics.RecordLevelCompletion("Easy", 176);
             playerStatistics.RecordLevelCompletion("Middle", 1875);
@@ -36,9 +57,54 @@ namespace sudoku
 
             easyLevelCountLabel.Content = easy;
             middleLevelCountLabel.Content = middle;
-            hardLevelCountLabel.Content = hard;
+            hardLevelCountLabel.Content = hard;*/
 
 
+        }
+
+        private void InitializeLabels()
+        {
+            nameLabel = FindName("NameLabel") as Label;
+            easyLevelCountLabel = FindName("EasyLevelCountLabel") as Label;
+            middleLevelCountLabel = FindName("MiddleLevelCountLabel") as Label;
+            hardLevelCountLabel = FindName("HardLevelCountLabel") as Label;
+            bestTimeLabel = FindName("BestTimeLabel") as Label;
+            scoreLabel = FindName("ScoreLabel") as Label;
+        }
+
+        private void PrepareData()
+        {
+            Player[] players = Tools.getAllPlayers();
+            MessageBox.Show("" + Tools.IsNew(players));
+
+            if (players != null && !Tools.IsNew(players))
+            {
+                int currentPosition = Tools.FindCurrentPosition(players);
+                
+
+                if(currentPosition >= 0)
+                {
+                    FillLabels(players[currentPosition]);
+                }
+                else
+                {
+                    FillLabels(new Player("No info", 0, 0, 0, 0, 0));
+                }
+            }
+            else
+            {
+                FillLabels(new Player("No info", 0, 0, 0, 0, 0));
+            }
+        }
+
+        private void FillLabels(Player player)
+        {
+            nameLabel.Content = player.GetNickname();
+            easyLevelCountLabel.Content = player.GetEasyLevel();
+            middleLevelCountLabel.Content = player.GetMiddleLevel();
+            hardLevelCountLabel.Content = player.GetHardLevel();
+            bestTimeLabel.Content = player.GetBestTime();
+            scoreLabel.Content = player.GetScore();
         }
     }
 }

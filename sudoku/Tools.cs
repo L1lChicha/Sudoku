@@ -74,7 +74,7 @@ namespace sudoku
             }
         }
 
-        private static int FindCurrentPosition(Player[] players) 
+        public static int FindCurrentPosition(Player[] players) 
         { 
             for(int i = 0; i < players.Length; i++){
                 if (players[i].GetNickname() == currentNickname)

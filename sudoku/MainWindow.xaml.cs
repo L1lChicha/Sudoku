@@ -34,6 +34,7 @@ namespace sudoku
 
             if (putName())
             {
+                Tools.currentNickname = nameTextBox.Text;
                 Statistics statistics = new Statistics();
                 statistics.Show();
             }
