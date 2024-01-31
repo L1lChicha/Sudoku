@@ -7,18 +7,39 @@
         mc:Ignorable="d"
         Title="Statistics" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Label Content="STATISTICS" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" Height="188" Width="487" FontSize="72" FontFamily="Arial Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="NameLabel" Content="Name" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Height="97" Width="208" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label Content="Easy level " HorizontalAlignment="Left" Margin="66,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label Content="Middle level" HorizontalAlignment="Left" Margin="325,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label Content="Hard level" HorizontalAlignment="Left" Margin="672,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label Content="Best time" HorizontalAlignment="Left" Margin="995,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label Content="Score" HorizontalAlignment="Left" Margin="1351,514,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
-        <Label x:Name="EasyLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="78,622,0,0" VerticalAlignment="Top" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"/>
-        <Label x:Name="MiddleLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="358,622,0,0" VerticalAlignment="Top" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"/>
-        <Label x:Name="HardLevelCountLabel" Content="Label" HorizontalAlignment="Left" Margin="682,622,0,0" VerticalAlignment="Top" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"/>
-        <Label x:Name="BestTimeLabel" Content="Label" HorizontalAlignment="Left" Margin="1000,622,0,0" VerticalAlignment="Top" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"/>
-        <Label x:Name="ScoreLabel" Content="Label" HorizontalAlignment="Left" Margin="1314,622,0,0" VerticalAlignment="Top" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200"/>
+        <StackPanel>
+            
+            <StackPanel HorizontalAlignment="Center">
+                <Label Content="STATISTICS" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" Height="188" Width="487" FontSize="72" FontFamily="Arial Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="NameLabel" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="97" Width="208" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+            </StackPanel>
 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Easy level " HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+                    <Label x:Name="EasyLevelCountLabel" Content="Label" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0">
+                    <Label Content="Middle level" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+                    <Label x:Name="MiddleLevelCountLabel" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Margin="0,40,0,0"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="99,0,0,0">
+                    <Label Content="Hard level" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+                    <Label x:Name="HardLevelCountLabel" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Margin="0,40,0,0"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="97,0,0,0">
+                    <Label Content="Best time" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+                    <Label x:Name="BestTimeLabel" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Margin="0,40,0,0"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0">
+                    <Label Content="Score" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
+                    <Label x:Name="ScoreLabel" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Margin="0,40,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
