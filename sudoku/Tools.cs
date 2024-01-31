@@ -38,7 +38,7 @@ namespace sudoku
 
         private static void ChangeData(Player[] players, int time, int score, int hardmode)
         {
-            int currentPosition = FindCurrentPosition(players);
+            int currentPosition = FindCurrentPosition(players, currentNickname);
 
             if (currentPosition != -1)
             {
@@ -74,10 +74,10 @@ namespace sudoku
             }
         }
 
-        public static int FindCurrentPosition(Player[] players) 
+        public static int FindCurrentPosition(Player[] players, string nickname) 
         { 
             for(int i = 0; i < players.Length; i++){
-                if (players[i].GetNickname() == currentNickname)
+                if (players[i].GetNickname() == nickname)
                 {
                     return i;
                 }
@@ -179,6 +179,27 @@ namespace sudoku
                 }
             }
             return true;
+        }
+
+        public static Player[] Sort(Player[] players)
+        {
+            int repetitions = players.Length;
+
+            do
+            {
+                for(int i = 0; i < repetitions; i++)
+                {
+                    if(i + 1 < repetitions && players[i].GetScore() <= players[i + 1].GetScore())
+                    {
+                        int temp = players[i+1].GetScore();
+                        players[i + 1].SetScore(players[i].GetScore());
+                        players[i].SetScore(temp);
+                    }
+                }
+                repetitions--;
+            } while (repetitions > 0);
+
+            return players;
         }
     }
 }

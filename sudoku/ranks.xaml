@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Ranks" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <ListView FontSize="30" HorizontalAlignment="Center" Name="rankingList" BorderBrush="#FF1C1919" HorizontalContentAlignment="Stretch" >
+        <ListView Name="rankingList" FontSize="30" HorizontalAlignment="Center" BorderBrush="#FF1C1919" HorizontalContentAlignment="Stretch" >
             <ListView.View>
                 <GridView >
                     <GridViewColumn  Header="Position" Width="200" DisplayMemberBinding="{Binding position}"   
                         />
-                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding name}"
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding nickName}"
                         />
                     <GridViewColumn Header="Score" Width="200" DisplayMemberBinding="{Binding score}"
                          />
