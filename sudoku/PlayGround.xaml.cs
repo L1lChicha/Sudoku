@@ -46,9 +46,9 @@ namespace sudoku
         public PlayGround()
         {
             InitializeComponent();
-            playGroundGrid = FindName("PlayGroundGrid") as Grid;
-            timerLabel = FindName("TimerLabel") as Label;
-            insertPanel = FindName("InsertPanel") as Panel;
+
+            InitializeGUI();
+            
 
             sudoku = GenerateSudoku();
 
@@ -423,6 +423,22 @@ namespace sudoku
             }
         }
 
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+            Confirmation confirmation = new Confirmation();
+            bool? result = confirmation.ShowDialog();
+
+            if(result == true)
+            {
+                Tools.AddSave(harmode, secondsElapsed, sudoku, puzzle);
+            }
+            else
+            {
+                timer.Start();
+            }
+        }
+
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             if(isPaused)
@@ -495,6 +511,13 @@ namespace sudoku
                 pauseButton.Content = "Unpause";
                 isPaused = true;
             } 
+        }
+
+        private void InitializeGUI()
+        {
+            playGroundGrid = (Grid)FindName("PlayGroundGrid");
+            timerLabel = (Label)FindName("TimerLabel");
+            insertPanel = (Panel)FindName("InsertPanel");
         }
     }
 }
