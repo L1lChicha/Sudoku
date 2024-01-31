@@ -20,7 +20,7 @@ namespace sudoku
     /// </summary>
     public partial class ranks : Window
     {
-        public List<YourDataItem> YourDataItemList { get; set; }
+        public List<PlayerDataItem> PlayerDataItemList { get; set; }
 
         public ranks()
         {
@@ -29,21 +29,31 @@ namespace sudoku
             rankingList.SelectionChanged += ListView_SelectionChanged;
 
             rankingList.Items.Clear();
-       
-            YourDataItemList = new List<YourDataItem>
-            {
-                new YourDataItem { position = "1", name = "Mark", score= "4354" },
-                new YourDataItem { position = "2", name= "Ilya", score = "23" }
-            };
 
-            rankingList.ItemsSource = YourDataItemList;
+            Player[] players = Tools.Sort(Tools.getAllPlayers());
+
+            PlayerDataItemList = new List<PlayerDataItem>();
+
+            int positionInList = 1;
+            foreach(Player player in players)
+            {
+                //MessageBox.Show(player.GetNickname());
+                PlayerDataItemList.Add(new PlayerDataItem { 
+                    position = positionInList.ToString(),
+                    nickName = player.GetNickname().ToString(),
+                    score = player.GetScore().ToString(),
+                });
+                positionInList++;
+            }
+
+            rankingList.ItemsSource = PlayerDataItemList;
 
         }
 
 
         private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            YourDataItem selectedItem = (YourDataItem)rankingList.SelectedItem;
+            PlayerDataItem selectedItem = (PlayerDataItem)rankingList.SelectedItem;
 
             if (selectedItem != null)
             {
@@ -56,13 +66,10 @@ namespace sudoku
             }
         }
 
-        
-
-        public class YourDataItem
+        public class PlayerDataItem
         {
             public string position { get; set; }
-
-            public string name { get; set; }
+            public string nickName { get; set; }
             public string score { get; set; }
 
         }

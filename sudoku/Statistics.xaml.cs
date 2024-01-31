@@ -28,48 +28,16 @@ namespace sudoku
             InitializeLabels();
 
             PrepareData();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*PlayerStatistics playerStatistics = new PlayerStatistics("player1");
-            
-
-            playerStatistics.RecordLevelCompletion("Easy", 176);
-            playerStatistics.RecordLevelCompletion("Middle", 1875);
-            playerStatistics.RecordLevelCompletion("Easy",43564);
-            playerStatistics.RecordLevelCompletion("Hard",6546);
-            playerStatistics.RecordLevelCompletion("Middle",543);
-
-            int easy = playerStatistics.GetLevelCompletionCount("Easy");
-            int middle = playerStatistics.GetLevelCompletionCount("Middle");
-            int hard = playerStatistics.GetLevelCompletionCount("Hard");
-
-            easyLevelCountLabel.Content = easy;
-            middleLevelCountLabel.Content = middle;
-            hardLevelCountLabel.Content = hard;*/
-
-
         }
 
         private void InitializeLabels()
         {
-            nameLabel = FindName("NameLabel") as Label;
-            easyLevelCountLabel = FindName("EasyLevelCountLabel") as Label;
-            middleLevelCountLabel = FindName("MiddleLevelCountLabel") as Label;
-            hardLevelCountLabel = FindName("HardLevelCountLabel") as Label;
-            bestTimeLabel = FindName("BestTimeLabel") as Label;
-            scoreLabel = FindName("ScoreLabel") as Label;
+            nameLabel = (Label)FindName("NameLabel");
+            easyLevelCountLabel = (Label)FindName("EasyLevelCountLabel");
+            middleLevelCountLabel = (Label)FindName("MiddleLevelCountLabel");
+            hardLevelCountLabel = (Label)FindName("HardLevelCountLabel");
+            bestTimeLabel = (Label)FindName("BestTimeLabel");
+            scoreLabel = (Label)FindName("ScoreLabel");
         }
 
         private void PrepareData()
@@ -79,7 +47,7 @@ namespace sudoku
 
             if (players != null && !Tools.IsNew(players))
             {
-                int currentPosition = Tools.FindCurrentPosition(players);
+                int currentPosition = Tools.FindCurrentPosition(players, Tools.currentNickname);
                 
 
                 if(currentPosition >= 0)
