@@ -72,5 +72,14 @@ namespace sudoku
 
             Close();
         }
+
+        private void FillLabels(Player player)
+        {
+            easyLevelCountLabel.Content = player.GetEasyLevel();
+            middleLevelCountLabel.Content = player.GetMiddleLevel();
+            hardLevelCountLabel.Content = player.GetHardLevel();
+            bestTimeLabel.Content = player.GetBestTime();
+            scoreLabel.Content = player.GetScore();
+        }
     }
 }

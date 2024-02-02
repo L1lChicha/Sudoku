@@ -41,10 +41,10 @@
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Click"/>
+                <Button Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Click"/>
+            </StackPanel>
         </StackPanel>
-        </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="2"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="-15,0,15,0"/>
 
     </Grid>
 </Window>
