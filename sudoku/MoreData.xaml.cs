@@ -72,5 +72,11 @@ namespace sudoku
 
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Close();
+        }
     }
 }
