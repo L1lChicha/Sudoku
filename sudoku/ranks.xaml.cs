@@ -48,15 +48,28 @@ namespace sudoku
             if (selectedItem != null)
             {
                 MoreData moreData= new MoreData(selectedItem);
-                moreData.Left = 800; 
-                moreData.Top =  100;
+                moreData.Owner = this;
+                moreData.Closed += MoreData_Closed;
 
+                double mouseX = Mouse.GetPosition(this).X;
+                double mouseY = Mouse.GetPosition(this).Y;
+
+                moreData.Left = 475;
+                moreData.Top = 100 + (60 * int.Parse(selectedItem.position));    
                 moreData.Show();
+                
+                this.IsEnabled = false;
                 rankingList.SelectedItem = null;
             }
         }
 
-        
+        private void MoreData_Closed(object sender, EventArgs e)
+        {
+            
+            this.IsEnabled = true;
+        }
+
+
 
         public class YourDataItem
         {
@@ -65,6 +78,14 @@ namespace sudoku
             public string name { get; set; }
             public string score { get; set; }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            
+            Close();
+            window.Show();
         }
     }
 }

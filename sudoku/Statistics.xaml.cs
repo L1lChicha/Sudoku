@@ -21,6 +21,14 @@ namespace sudoku
     {
 
         Label nameLabel, easyLevelCountLabel, middleLevelCountLabel, hardLevelCountLabel, bestTimeLabel, scoreLabel;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            Close();
+            window.Show();
+        }
+
         public Statistics()
         {
             InitializeComponent();
@@ -28,19 +36,6 @@ namespace sudoku
             InitializeLabels();
 
             PrepareData();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             /*PlayerStatistics playerStatistics = new PlayerStatistics("player1");
             
@@ -58,8 +53,6 @@ namespace sudoku
             easyLevelCountLabel.Content = easy;
             middleLevelCountLabel.Content = middle;
             hardLevelCountLabel.Content = hard;*/
-
-
         }
 
         private void InitializeLabels()

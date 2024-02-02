@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="Statistics" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Statistics" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+                Icon = "D:\jv laby\sudoku\icon.png">
+
     <Grid>
         <StackPanel>
-            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button FontSize="22" Content="Exit" HorizontalContentAlignment="Center" Width="160" Height="57" Margin="0,50,50,0" Click="Button_Click" />
+            </StackPanel>
             <StackPanel HorizontalAlignment="Center">
-                <Label Content="STATISTICS" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" Height="188" Width="487" FontSize="72" FontFamily="Arial Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="STATISTICS" HorizontalAlignment="Center" VerticalAlignment="Top" Height="188" Width="487" FontSize="72" FontFamily="Arial Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <Label x:Name="NameLabel" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Top" Height="97" Width="208" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
             </StackPanel>
 

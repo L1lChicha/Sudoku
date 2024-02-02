@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="Ranks" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Ranks" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+                Icon = "D:\jv laby\sudoku\icon.png">
+
     <Grid>
-        <ListView FontSize="30" HorizontalAlignment="Center" Name="rankingList" BorderBrush="#FF1C1919" HorizontalContentAlignment="Stretch" >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Center" Margin="500,0,0,0">
+            <ListView FontSize="30" HorizontalAlignment="Center" Name="rankingList" BorderBrush="#FF1C1919" HorizontalContentAlignment="Stretch" >
             <ListView.View>
                 <GridView >
                     <GridViewColumn  Header="Position" Width="200" DisplayMemberBinding="{Binding position}"   
@@ -20,7 +24,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
+        </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Margin="200,20,0,0" Cursor="">
+                <Button Content="Exit" Width="160" Height="60" FontSize="22" Click="Button_Click"></Button>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Window>
