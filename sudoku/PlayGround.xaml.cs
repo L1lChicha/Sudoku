@@ -26,22 +26,23 @@ namespace sudoku
     /// 
     public partial class PlayGround : Window
     {
-        public int numberOfEmptyCells = 1;
-        public static int attempt = 1;
-        public static Button currentButton = null;
-        public static Button previousButton = null;
-        private int[,] sudoku = new int[9, 9];
-        private int[,] puzzle = new int[9, 9];
-        public static int currentButtonRow;
-        public static int currentButtonCol;
-        private DispatcherTimer timer = new DispatcherTimer();
-        private int secondsElapsed = 0;
-        public bool isPaused = false;
-        public Label timerLabel, scoreLabel;
-        public Grid playGroundGrid;
-        public Panel insertPanel;
-        private int harmode = 2;
-        private int score = 1000;
+        int numberOfEmptyCells = 1;
+        static int attempt = 1;
+        static Button currentButton = null;
+        static Button previousButton = null;
+        int[,] sudoku = new int[9, 9];
+        int[,] puzzle = new int[9, 9];
+        static int currentButtonRow;
+        static int currentButtonCol;
+        DispatcherTimer timer = new DispatcherTimer();
+        int secondsElapsed = 0;
+        bool isPaused = false;
+        Label timerLabel, scoreLabel;
+        Grid playGroundGrid;
+        Panel insertPanel;
+        int harmode = 2;
+        int score = 1000;
+        int secondsLastReply = 0;
 
         public PlayGround()
         {
@@ -132,6 +133,8 @@ namespace sudoku
                 currentButton.Background = Brushes.White;
                 numberOfEmptyCells--;
 
+                CalculateScore(1);
+
                 if(numberOfEmptyCells == 0)
                 {
                     SudokuComplited();
@@ -141,9 +144,61 @@ namespace sudoku
             {
                 currentButton.Content = num;
                 currentButton.Background = Brushes.Red;
+
+                CalculateScore(-1);
                 //MessageBox.Show("Grid position:\n" + currentButtonRow + " " + currentButtonCol + "\nSudoku number:\n" + sudoku[currentButtonRow, currentButtonCol]);
             }
             
+        }
+
+        private void CalculateScore(int condition)
+        {
+            secondsLastReply = secondsElapsed - secondsLastReply;
+            int tempScore = 0;
+
+            switch (condition)
+            {
+                case 1:
+                    if (secondsLastReply < 5)
+                    {
+                        tempScore = tempScore + (75 * secondsLastReply * harmode);
+                    }
+                    else if (secondsLastReply < 15 && secondsLastReply > 5)
+                    {
+                        tempScore = tempScore + (50 * (secondsLastReply / 2) * harmode);
+                    }
+                    else if (secondsLastReply < 30 && secondsLastReply > 15)
+                    {
+                        tempScore = tempScore + (25 * (secondsLastReply / 3) * harmode);
+                    }
+                    else
+                    {
+                        tempScore = tempScore + (50 * harmode);
+                    }
+                    break;
+                case -1:
+                    if (secondsLastReply < 5)
+                    {
+                        tempScore = tempScore - (50 * harmode);
+                    }
+                    else if (secondsLastReply < 15 && secondsLastReply > 5)
+                    {
+                        tempScore = tempScore - (25 * (secondsLastReply / 3) * harmode);
+                    }
+                    else if (secondsLastReply < 30 && secondsLastReply > 15)
+                    {
+                        tempScore = tempScore - (50 * (secondsLastReply / 2) * harmode);
+                    }
+                    else
+                    {
+                        tempScore = tempScore - (75 * (int)(secondsLastReply / 1.5) * harmode);
+                    }
+                    break;
+            }
+
+            score += tempScore;
+
+            scoreLabel.Content = score;
         }
 
 
