@@ -37,7 +37,7 @@ namespace sudoku
         private DispatcherTimer timer = new DispatcherTimer();
         private int secondsElapsed = 0;
         public bool isPaused = false;
-        public Label timerLabel;
+        public Label timerLabel, scoreLabel;
         public Grid playGroundGrid;
         public Panel insertPanel;
         private int harmode = 2;
@@ -46,15 +46,9 @@ namespace sudoku
         public PlayGround()
         {
             InitializeComponent();
-
             InitializeGUI();
             
-
             sudoku = GenerateSudoku();
-
-            Console.WriteLine("Полное решенное судоку:");
-            PrintSudoku(sudoku);
-
             Array.Copy(sudoku, puzzle, sudoku.Length);
 
             RemoveNumbers(puzzle, numberOfEmptyCells);
@@ -94,18 +88,23 @@ namespace sudoku
                     currentButtonRow = Grid.GetRow(border);
                     currentButtonCol = Grid.GetColumn(border);
 
-                    if (currentButton != null)
-                    {
-                        previousButton = currentButton;
-                    }
+                    currentButton = button;
+                    currentButton.Background = Brushes.LightBlue;
+
                     if (previousButton != null && previousButton.Background != Brushes.Red)
                     {
                         previousButton.Background = Brushes.White;
 
                     }
+                    else if (previousButton != null && previousButton.Background == Brushes.Red)
+                    {
+                        previousButton.Background = Brushes.Red;
+                    }
 
-                    currentButton = button;
-                    currentButton.Background = Brushes.LightBlue;
+                    if (currentButton != null)
+                    {
+                        previousButton = currentButton;
+                    }
                 }
             }
         }
@@ -136,7 +135,6 @@ namespace sudoku
                 if(numberOfEmptyCells == 0)
                 {
                     SudokuComplited();
-                    
                 }
             }
             else
@@ -371,61 +369,18 @@ namespace sudoku
 
                 if (puzzle[row, col] != 0)
                 {
-                    int temp = puzzle[row, col];
                     puzzle[row, col] = 0;
-
-                    // Проверка, что удаленная цифра оставляет единственное решение
-                    /*if (!HasUniqueSolution(puzzle))
-                    {
-                        puzzle[row, col] = temp; // Восстановление цифры, если удаление нарушает единственность решения
-                        i--; // Повторная попытка удаления
-                    }*/
                 }
                 else
                 {
                     i--; // Повторная попытка выбора другой ячейки
                 }
             }
-
-            Console.WriteLine("\nГотовое для решения судоку:");
-            PrintSudoku(puzzle);
-        }
-
-        static void PrintSudoku(int[,] sudoku)
-        {
-            bool test1 = true;
-            bool test2 = true;
-            Console.WriteLine();
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    if (i == 3 && test1 == true)
-                    {
-                        Console.Write("\n");
-                        test1 = false;
-                    }
-                    if (i == 6 && test2 == true)
-                    {
-                        Console.Write("\n");
-                        test2 = false;
-                    }
-
-                    Console.Write(sudoku[i, j] + " ");
-
-                    if (j == 2 || j == 5)
-                    {
-                        Console.Write(" ");
-                    }
-
-                }
-                Console.WriteLine();
-            }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            timer.Stop();
+            Pause();
             Confirmation confirmation = new Confirmation();
             bool? result = confirmation.ShowDialog();
 
@@ -435,13 +390,39 @@ namespace sudoku
             }
             else
             {
-                timer.Start();
+                Pause();
             }
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
-            if(isPaused)
+            Pause();
+        }
+
+        private void Pause()
+        {
+            if (isPaused)
+            {
+                PaintPlayGround(Brushes.Black);
+
+                isPaused = false;
+                pauseButton.Content = "Pause";
+                timer.Start();
+            }
+            else
+            {
+                timer.Stop();
+
+                PaintPlayGround(Brushes.White);
+
+                pauseButton.Content = "Unpause";
+                isPaused = true;
+            }
+        }
+
+        private void PaintPlayGround(Brush color)
+        {
+            if(color == Brushes.Black)
             {
                 foreach (UIElement element in playGroundGrid.Children)
                 {
@@ -456,13 +437,13 @@ namespace sudoku
                         {
                             Button button = (Button)borderChild;
                             button.Foreground = Brushes.Black;
-                            if(button.Content != "")
+                            if(button.Content == "" || button.Background == Brushes.Red)
                             {
-                                button.IsEnabled = false;
+                                button.IsEnabled = true;
                             }
                             else
                             {
-                                button.IsEnabled = true;
+                                button.IsEnabled = false;
                             }
                         }
                     }
@@ -476,13 +457,9 @@ namespace sudoku
                         button.IsEnabled = true;
                     }
                 }
-                isPaused = false;
-                pauseButton.Content = "Pause";
-                timer.Start();
             }
             else
             {
-                timer.Stop();
                 foreach (UIElement element in playGroundGrid.Children)
                 {
                     if (element is Border)
@@ -500,7 +477,7 @@ namespace sudoku
                         }
                     }
                 }
-                foreach(UIElement element in insertPanel.Children)
+                foreach (UIElement element in insertPanel.Children)
                 {
                     if (element is Button)
                     {
@@ -508,9 +485,7 @@ namespace sudoku
                         button.IsEnabled = false;
                     }
                 }
-                pauseButton.Content = "Unpause";
-                isPaused = true;
-            } 
+            }
         }
 
         private void InitializeGUI()
@@ -518,6 +493,7 @@ namespace sudoku
             playGroundGrid = (Grid)FindName("PlayGroundGrid");
             timerLabel = (Label)FindName("TimerLabel");
             insertPanel = (Panel)FindName("InsertPanel");
+            scoreLabel = (Label)FindName("ScoreLabel");
         }
     }
 }
