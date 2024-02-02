@@ -21,7 +21,7 @@ namespace sudoku
     /// </summary>
     public partial class MoreData : Window
     {
-        Label easyLevelCountLabel, middleLevelCountLabel, hardLevelCountLabel, bestTimeLabel, scoreLabel;
+        public Label easyLevelCountLabel, middleLevelCountLabel, hardLevelCountLabel, bestTimeLabel, scoreLabel;
         public MoreData(PlayerDataItem item)
         {
             InitializeComponent();
