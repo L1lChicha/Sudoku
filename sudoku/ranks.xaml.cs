@@ -79,9 +79,7 @@ namespace sudoku
             this.IsEnabled = true;
         }
 
-
-
-        public class YourDataItem
+        public class PlayerDataItem
         {
             public string position { get; set; }
             public string nickName { get; set; }

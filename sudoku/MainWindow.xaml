@@ -9,7 +9,7 @@
         Title="Sudoku" Height="900" Width="1600" ResizeMode="CanResizeWithGrip" WindowState="Maximized" WindowStartupLocation="CenterScreen"
         Icon = "D:\jv laby\sudoku\icon.png">
     <Grid>
-        <StackPanel >
+        <StackPanel>
 
             <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,169,0,0" VerticalAlignment="Top" Width="514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
             <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Put your nickname" Height="83" TextWrapping="Wrap" Width="514" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLines="1"/>
