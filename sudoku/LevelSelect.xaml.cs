@@ -19,7 +19,7 @@ namespace sudoku
     /// </summary>
     public partial class LevelSelect : Window
     {
-        
+
 
         public LevelSelect()
         {
@@ -48,10 +48,17 @@ namespace sudoku
         {
             PlayGround playGround = new PlayGround();
             playGround.Show();
-            
+
             Close();
         }
 
-        
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            Close();   
+        }
+
+
     }
 }

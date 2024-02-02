@@ -21,6 +21,14 @@ namespace sudoku
     {
 
         Label nameLabel, easyLevelCountLabel, middleLevelCountLabel, hardLevelCountLabel, bestTimeLabel, scoreLabel;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            Close();
+            window.Show();
+        }
+
         public Statistics()
         {
             InitializeComponent();
@@ -28,6 +36,23 @@ namespace sudoku
             InitializeLabels();
 
             PrepareData();
+
+            /*PlayerStatistics playerStatistics = new PlayerStatistics("player1");
+            
+
+            playerStatistics.RecordLevelCompletion("Easy", 176);
+            playerStatistics.RecordLevelCompletion("Middle", 1875);
+            playerStatistics.RecordLevelCompletion("Easy",43564);
+            playerStatistics.RecordLevelCompletion("Hard",6546);
+            playerStatistics.RecordLevelCompletion("Middle",543);
+
+            int easy = playerStatistics.GetLevelCompletionCount("Easy");
+            int middle = playerStatistics.GetLevelCompletionCount("Middle");
+            int hard = playerStatistics.GetLevelCompletionCount("Hard");
+
+            easyLevelCountLabel.Content = easy;
+            middleLevelCountLabel.Content = middle;
+            hardLevelCountLabel.Content = hard;*/
         }
 
         private void InitializeLabels()

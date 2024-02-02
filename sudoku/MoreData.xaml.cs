@@ -67,15 +67,10 @@ namespace sudoku
             }
         }
 
-
-        private void FillLabels(Player player)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            easyLevelCountLabel.Content = player.GetEasyLevel();
-            middleLevelCountLabel.Content = player.GetMiddleLevel();
-            hardLevelCountLabel.Content = player.GetHardLevel();
-            bestTimeLabel.Content = player.GetBestTime();
-            scoreLabel.Content = player.GetScore();
-        }
 
+            Close();
+        }
     }
 }

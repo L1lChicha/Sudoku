@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="PlayGround" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="PlayGround" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+                Icon = "D:\jv laby\sudoku\icon.png">
+
     <Grid x:Name="playGroundWindow">
         <StackPanel Orientation="Vertical">
             
