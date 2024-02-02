@@ -27,6 +27,7 @@ namespace sudoku
         {
             ranks ranks = new ranks();
             ranks.Show();
+            Close();
         }
 
         private void statisticsButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,7 @@ namespace sudoku
                 Tools.currentNickname = nameTextBox.Text;
                 Statistics statistics = new Statistics();
                 statistics.Show();
+                Close();
             }
 
         }
@@ -52,6 +54,8 @@ namespace sudoku
                 Close();
             }
         }
+
+        
 
 
 
@@ -70,6 +74,11 @@ namespace sudoku
                 return true;
             }
 
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+           Close();
         }
     }
 }

@@ -77,5 +77,10 @@ namespace sudoku
             scoreLabel.Content = player.GetScore();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Close();
+        }
     }
 }
