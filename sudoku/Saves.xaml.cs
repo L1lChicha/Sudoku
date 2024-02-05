@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static sudoku.ranks;
 
 namespace sudoku
 {
@@ -20,38 +21,54 @@ namespace sudoku
     /// </summary>
     public partial class Saves : Window
     {
-
+        private Save[] allCurrentSaves;
         public ListView listView;
+        private int positionInList = 1;
         public Saves(Save[] currentSaves)
         {
             InitializeComponent();
 
+            allCurrentSaves = new Save[currentSaves.Length];
+            Array.Copy(currentSaves, allCurrentSaves, currentSaves.Length);
+
             listView = (ListView)FindName("ListViewSaves");
+            listView.SelectionChanged += ListView_SelectionChanged;
             listView.Items.Clear();
 
             ObservableCollection<CurrentPersonSaves> currentPersonSaves = new ObservableCollection<CurrentPersonSaves> ();
 
+            positionInList = 1;
             foreach(Save save in currentSaves)
             {
-                currentPersonSaves.Add(new CurrentPersonSaves {hardmode = save.Hardmode, time = save.Time});
+                currentPersonSaves.Add(new CurrentPersonSaves {position = positionInList, hardmode = save.Hardmode, time = save.Time, score = save.Score});
+                positionInList++;
             }
 
             listView.ItemsSource = currentPersonSaves;
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            /*if (sender is Button button && button.Tag is listView data)
+            CurrentPersonSaves selectedSave = (CurrentPersonSaves)listView.SelectedItem;
+
+
+            if (selectedSave != null)
             {
-                int rowIndex = myListView.Items.IndexOf(data);
-                MessageBox.Show($"Button clicked in row {rowIndex}");
-            }*/
+                Tools.choosenSave = allCurrentSaves[selectedSave.position - 1];
+                DownloadOrDelete choose = new DownloadOrDelete();
+
+                choose.ShowDialog();
+            }
         }
+
 
         public class CurrentPersonSaves
         {
+            public int position {  get; set; }
             public int hardmode { get; set; }
             public int time { get; set; }
+
+            public int score { get; set; }
         }
     }
 }

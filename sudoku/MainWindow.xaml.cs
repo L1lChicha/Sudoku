@@ -52,14 +52,10 @@ namespace sudoku
 
                 if (Tools.CheckSaves())
                 {
-                    Save[] saves = Tools.GetCurrentSaves();
+                    Save[] currentSaves = Tools.GetCurrentSaves();
 
-                    foreach (Save s in saves)
-                    {
-                        MessageBox.Show(s.Nickname + s.Time);
-                    }
 
-                    Saves currentSavesListView = new Saves(saves);
+                    Saves currentSavesListView = new Saves(currentSaves);
                     currentSavesListView.Show();
                 }
                 else

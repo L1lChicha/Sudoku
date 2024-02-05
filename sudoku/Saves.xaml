@@ -10,15 +10,10 @@
         <ListView Name="ListViewSaves" Margin="10">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="Position" Width="130" DisplayMemberBinding="{Binding position}" />
                     <GridViewColumn Header="Hardmode" Width="130" DisplayMemberBinding="{Binding hardmode}" />
                     <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding time}" />
-                    <GridViewColumn Header="Deletion" Width="120">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Height="30" Width="100" Content="Delete" Click="DeleteButton_Click" Tag="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=Content}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Score" Width="100" DisplayMemberBinding="{Binding score}" />
                 </GridView>
             </ListView.View>
         </ListView>

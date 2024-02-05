@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,18 +45,23 @@ namespace sudoku
         int score = 1000;
         int secondsLastReply = 0;
 
-        public PlayGround()
+        public PlayGround(int[,] savedSudoku, int[,] savedPuzzle)
         {
             InitializeComponent();
             InitializeGUI();
             
-            sudoku = GenerateSudoku();
-            Array.Copy(sudoku, puzzle, sudoku.Length);
+            if(savedSudoku != null && savedPuzzle != null)
+            {
+                CreatePlayGround(playGroundGrid, savedPuzzle);
+            }
+            else
+            {
+                sudoku = GenerateSudoku();
+                Array.Copy(sudoku, puzzle, sudoku.Length);
 
-            RemoveNumbers(puzzle, numberOfEmptyCells);
-
-
-            CreatePlayGround(playGroundGrid, puzzle);
+                RemoveNumbers(puzzle, numberOfEmptyCells);
+                CreatePlayGround(playGroundGrid, puzzle);
+            }
 
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
@@ -441,7 +447,7 @@ namespace sudoku
 
             if(result == true)
             {
-                Tools.AddSave(harmode, secondsElapsed, sudoku, puzzle);
+                Tools.AddSave(harmode, secondsElapsed,score, sudoku, puzzle);
             }
             else
             {

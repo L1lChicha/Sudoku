@@ -32,21 +32,21 @@ namespace sudoku
 
         private void easyLevelButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround();
+            PlayGround playGround = new PlayGround(null, null);
             playGround.Show();
             Close();
         }
 
         private void middleLevelButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround();
+            PlayGround playGround = new PlayGround(null, null);
             playGround.Show();
             Close();
         }
 
         private void hardLevelButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround();
+            PlayGround playGround = new PlayGround(null, null);
             playGround.Show();
 
             Close();

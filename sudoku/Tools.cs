@@ -18,6 +18,8 @@ namespace sudoku
         public static int numberOfPlayers;
         public static int numberOfSaves;
 
+        public static Save choosenSave;
+
 
         public static void AddInformation(int time, int score, int hardmode)
         {
@@ -206,7 +208,7 @@ namespace sudoku
             return players;
         }
 
-        public static void AddSave(int hardmode, int time, int[,] sudoku, int[,] puzzle)
+        public static void AddSave(int hardmode, int time, int score, int[,] sudoku, int[,] puzzle)
         {
             string sudokuString = string.Join(",", Enumerable.Range(0, 9).SelectMany(i => Enumerable.Range(0, 9).Select(j => sudoku[i, j])));
             string puzzleString = string.Join(",", Enumerable.Range(0, 9).SelectMany(i => Enumerable.Range(0, 9).Select(j => puzzle[i, j])));
@@ -217,16 +219,16 @@ namespace sudoku
 
                 if (IsNewSave(saves, hardmode))
                 {
-                    AddNewSave(saves, hardmode, time, sudokuString, puzzleString);
+                    AddNewSave(saves, hardmode, time, score, sudokuString, puzzleString);
                 }
                 else
                 {
-                    ChangeSaveData(saves, hardmode, time, sudokuString, puzzleString);
+                    ChangeSaveData(saves, hardmode, time, score, sudokuString, puzzleString);
                 }
             }
             else
             {
-                AddFirstSave(hardmode, time, sudokuString, puzzleString);
+                AddFirstSave(hardmode, time, score, sudokuString, puzzleString);
             }
         }
 
@@ -238,7 +240,6 @@ namespace sudoku
                 using (StreamReader reader = new StreamReader(savesFilePath))
                 {
                     firstLine = reader.ReadLine();
-                    MessageBox.Show(firstLine);
 
                     if (int.TryParse(firstLine, out numberOfSaves))
                     {
@@ -248,10 +249,10 @@ namespace sudoku
                             string line = reader.ReadLine();
                             string[] values = line.Split(',');
 
-                            string savedSudoku = GetArray(3, 83, values);
-                            string savedPuzzle = GetArray(84, 164, values);
+                            string savedSudoku = GetArray(4, 84, values);
+                            string savedPuzzle = GetArray(85, 165, values);
 
-                            saves[i] = new Save(values[0], int.Parse(values[1]), int.Parse(values[2]), savedSudoku, savedPuzzle);
+                            saves[i] = new Save(values[0], int.Parse(values[1]), int.Parse(values[2]), int.Parse(values[3]), savedSudoku, savedPuzzle);
                         }
                         return saves;
                     }
@@ -265,7 +266,7 @@ namespace sudoku
             return null;
         }
 
-        private static void AddNewSave(Save[] saves, int hardmode, int time, string sudoku, string puzzle)
+        private static void AddNewSave(Save[] saves, int hardmode, int time, int score, string sudoku, string puzzle)
         {
             using (StreamWriter writer = new StreamWriter(savesFilePath))
             {
@@ -273,31 +274,32 @@ namespace sudoku
 
                 foreach (Save save in saves)
                 {
-                    writer.WriteLine($"{save.Nickname},{save.Hardmode},{save.Time},{save.Sudoku},{save.Puzzle}");
+                    writer.WriteLine($"{save.Nickname},{save.Hardmode},{save.Time},{save.Score},{save.Sudoku},{save.Puzzle}");
                 }
 
                 switch (hardmode)
                 {
                     case 1:
-                        writer.WriteLine($"{currentNickname},1,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},1,{time},{score},{sudoku},{puzzle}");
                         break;
                     case 2:
-                        writer.WriteLine($"{currentNickname},2,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},2,{time},{score},{sudoku},{puzzle}");
                         break;
                     case 3:
-                        writer.WriteLine($"{currentNickname},3,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},3,{time},{score},{sudoku},{puzzle}");
                         break;
                 }
             }
         }
 
-        private static void ChangeSaveData(Save[] saves, int hardmode, int time, string sudoku, string puzzle)
+        private static void ChangeSaveData(Save[] saves, int hardmode, int time, int score, string sudoku, string puzzle)
         {
             int currentPosition = FindCurrentSavePosition(saves, currentNickname, hardmode);
 
             if (currentPosition != -1)
             {
                 saves[currentPosition].Time = time;
+                saves[currentPosition].Score = score;
                 saves[currentPosition].Sudoku = sudoku;
                 saves[currentPosition].Puzzle = puzzle;
 
@@ -307,7 +309,7 @@ namespace sudoku
 
                     foreach (Save save in saves)
                     {
-                        writer.WriteLine($"{save.Nickname},{save.Hardmode},{save.Time},{save.Sudoku},{save.Puzzle}");
+                        writer.WriteLine($"{save.Nickname},{save.Hardmode},{save.Time},{save.Score},{save.Sudoku},{save.Puzzle}");
                     }
                 }
             }
@@ -325,7 +327,7 @@ namespace sudoku
             return -1;
         }
 
-        private static void AddFirstSave(int hardmode, int time, string sudoku, string puzzle)
+        private static void AddFirstSave(int hardmode, int time, int score, string sudoku, string puzzle)
         {
             numberOfSaves = 0;
             using (StreamWriter writer = new StreamWriter(savesFilePath))
@@ -335,13 +337,13 @@ namespace sudoku
                 switch (hardmode)
                 {
                     case 1:
-                        writer.WriteLine($"{currentNickname},1,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},1,{time},{score},{sudoku},{puzzle}");
                         break;
                     case 2:
-                        writer.WriteLine($"{currentNickname},2,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},2,{time},{score},{sudoku},{puzzle}");
                         break;
                     case 3:
-                        writer.WriteLine($"{currentNickname},3,{time},{sudoku},{puzzle}");
+                        writer.WriteLine($"{currentNickname},3,{time},{score},{sudoku},{puzzle}");
                         break;
                 }
             }
@@ -367,6 +369,27 @@ namespace sudoku
             return string.Join(",", Enumerable.Range(0, 9).SelectMany(i => Enumerable.Range(0, 9).Select(j => savedArray[i, j])));
         }
 
+        public static int[,] GetArrayOfDigits(int startPostion, int endPosition, string[] values)
+        {
+            int[,] savedArray = new int[9, 9];
+
+            int i = 0, j = 0;
+            while (startPostion < endPosition + 1)
+            {
+                savedArray[i, j] = int.Parse(values[startPostion]);
+                startPostion++;
+                j++;
+
+                if (j == 9)
+                {
+                    j = 0;
+                    i++;
+                }
+            }
+
+            return savedArray;
+        }
+
         public static bool IsNewSave(Save[] saves, int hardmode)
         {
             foreach (Save save in saves)
@@ -381,16 +404,19 @@ namespace sudoku
 
         public static bool CheckSaves()
         {
+
             Save[] saves = GetAllSaves();
 
-            foreach (Save save in saves)
+            if(saves != null)
             {
-                if(save.Nickname == currentNickname)
+                foreach (Save save in saves)
                 {
-                    return true;
+                    if (save.Nickname == currentNickname)
+                    {
+                        return true;
+                    }
                 }
-            }
-
+            }   
             return false;
         }
 
@@ -406,18 +432,27 @@ namespace sudoku
             return allSaves.Where(save => save.Nickname == currentNickname).ToArray();
         }
 
-        private static int FindNumberOfSavesOfCurrentPlayer()
+        public static void DeleteSave()
         {
-            int number = 0;
+            Save[] saves = GetAllSaves(); 
+            using (StreamWriter writer = new StreamWriter(savesFilePath))
+            {
+                writer.WriteLine(--numberOfSaves);
 
-            foreach (Save save in GetAllSaves()) { 
-                if(save.Nickname == currentNickname)
+                foreach (Save save in saves)
                 {
-                    number++;
+                    if (save.Nickname == choosenSave.Nickname && save.Hardmode == choosenSave.Hardmode &&
+                        save.Time == choosenSave.Time && save.Score == choosenSave.Score &&
+                        save.Sudoku == choosenSave.Sudoku && save.Puzzle == choosenSave.Puzzle)
+                    {
+
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{save.Nickname},{save.Hardmode},{save.Time},{save.Score},{save.Sudoku},{save.Puzzle}");
+                    }
                 }
             }
-
-            return number;
         }
     }
 }

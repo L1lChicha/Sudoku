@@ -1,0 +1,24 @@
+﻿<Window x:Class="sudoku.DownloadOrDelete"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sudoku"
+        mc:Ignorable="d"
+        Title="DownloadOrDelete" Height="450" Width="400">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20">
+                <Label Content="You want download or delete this save?" FontSize="15"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="20, 100">
+                <Button Content="Download" Background="#FF2AAC0A" BorderBrush="#FF2AAC0A" Click="Download_Click"></Button>
+                <Button Content="Delete" Margin="40, 0" Background="#FFCB380F" BorderBrush="#FFCB380F" Click="Delete_Click"></Button>
+                <Button Content="Exit" Click="Exit_Click"></Button>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

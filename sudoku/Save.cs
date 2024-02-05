@@ -11,6 +11,7 @@ namespace sudoku
         private string nickname;
         private int hardmode;
         private int time;
+        private int score;
         private string sudoku;
         private string puzzle;
 
@@ -28,6 +29,12 @@ namespace sudoku
             set => time = value;
         }
 
+        public int Score
+        {
+            get => score;
+            set => score = value;
+        }
+
         public string Sudoku
         {
             get => sudoku;
@@ -40,11 +47,12 @@ namespace sudoku
             set => puzzle = value;
         }
 
-        public Save(string nickname, int hardmode, int time, string sudoku, string puzzle)
+        public Save(string nickname, int hardmode, int time, int score, string sudoku, string puzzle)
         {
             this.nickname = nickname;
             this.hardmode = hardmode;
             this.time = time;
+            this.score = score;
             this.sudoku = sudoku;
             this.puzzle = puzzle;
         }
