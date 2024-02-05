@@ -1,0 +1,26 @@
+﻿<Window x:Class="sudoku.Saves"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sudoku"
+        mc:Ignorable="d"
+        Title="Saves" Height="450" Width="500">
+    <Grid>
+        <ListView Name="ListViewSaves" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Hardmode" Width="130" DisplayMemberBinding="{Binding hardmode}" />
+                    <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding time}" />
+                    <GridViewColumn Header="Deletion" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Height="30" Width="100" Content="Delete" Click="DeleteButton_Click" Tag="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=Content}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

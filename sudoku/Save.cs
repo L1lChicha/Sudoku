@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sudoku
 {
-    internal class Save
+    public class Save
     {
         private string nickname;
         private int hardmode;

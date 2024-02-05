@@ -49,9 +49,27 @@ namespace sudoku
             if (putName())
             {
                 Tools.currentNickname = nameTextBox.Text;
-                LevelSelect levelSelect = new LevelSelect();
-                levelSelect.ShowDialog();
-                Close();
+
+                if (Tools.CheckSaves())
+                {
+                    Save[] saves = Tools.GetCurrentSaves();
+
+                    foreach (Save s in saves)
+                    {
+                        MessageBox.Show(s.Nickname + s.Time);
+                    }
+
+                    Saves currentSavesListView = new Saves(saves);
+                    currentSavesListView.Show();
+                }
+                else
+                {
+                    LevelSelect levelSelect = new LevelSelect();
+                    levelSelect.ShowDialog();
+                    Close();
+                }
+
+                
             }
         }
 

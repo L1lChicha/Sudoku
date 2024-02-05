@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace sudoku
@@ -212,7 +213,7 @@ namespace sudoku
 
             if (ExistenceCheck(savesFilePath))
             {
-                Save[] saves = getAllSaves();
+                Save[] saves = GetAllSaves();
 
                 if (IsNewSave(saves, hardmode))
                 {
@@ -229,14 +230,15 @@ namespace sudoku
             }
         }
 
-        public static Save[] getAllSaves()
+        public static Save[] GetAllSaves()
         {
             try
             {
                 string firstLine;
-                using (StreamReader reader = new StreamReader(statisticsFilePath))
+                using (StreamReader reader = new StreamReader(savesFilePath))
                 {
                     firstLine = reader.ReadLine();
+                    MessageBox.Show(firstLine);
 
                     if (int.TryParse(firstLine, out numberOfSaves))
                     {
@@ -375,6 +377,47 @@ namespace sudoku
                 }
             }
             return true;
+        }
+
+        public static bool CheckSaves()
+        {
+            Save[] saves = GetAllSaves();
+
+            foreach (Save save in saves)
+            {
+                if(save.Nickname == currentNickname)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static Save[] GetCurrentSaves()
+        {
+            Save[] allSaves = GetAllSaves();
+
+            if (allSaves == null)
+            {
+                return null;
+            }
+
+            return allSaves.Where(save => save.Nickname == currentNickname).ToArray();
+        }
+
+        private static int FindNumberOfSavesOfCurrentPlayer()
+        {
+            int number = 0;
+
+            foreach (Save save in GetAllSaves()) { 
+                if(save.Nickname == currentNickname)
+                {
+                    number++;
+                }
+            }
+
+            return number;
         }
     }
 }
