@@ -390,6 +390,23 @@ namespace sudoku
             return savedArray;
         }
 
+        public static int CountZeros(int[,] array)
+        {
+            int counter = 0;
+            for(int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (array[i, j] == 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
         public static bool IsNewSave(Save[] saves, int hardmode)
         {
             foreach (Save save in saves)

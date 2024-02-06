@@ -55,7 +55,7 @@ namespace sudoku
             if (selectedSave != null)
             {
                 Tools.choosenSave = allCurrentSaves[selectedSave.position - 1];
-                DownloadOrDelete choose = new DownloadOrDelete();
+                DownloadOrDelete choose = new DownloadOrDelete(this);
 
                 choose.ShowDialog();
             }

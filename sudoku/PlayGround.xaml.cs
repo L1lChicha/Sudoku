@@ -27,7 +27,7 @@ namespace sudoku
     /// 
     public partial class PlayGround : Window
     {
-        int numberOfEmptyCells = 1;
+        int numberOfEmptyCells;
         static int attempt = 1;
         static Button currentButton = null;
         static Button previousButton = null;
@@ -36,23 +36,29 @@ namespace sudoku
         static int currentButtonRow;
         static int currentButtonCol;
         DispatcherTimer timer = new DispatcherTimer();
-        int secondsElapsed = 0;
+        int secondsElapsed;
         bool isPaused = false;
         Label timerLabel, scoreLabel;
         Grid playGroundGrid;
         Panel insertPanel;
-        int harmode = 2;
-        int score = 1000;
-        int secondsLastReply = 0;
+        int harmode;
+        int score;
+        int secondsLastReply;
 
-        public PlayGround(int[,] savedSudoku, int[,] savedPuzzle)
+        public PlayGround(int[,] savedSudoku, int[,] savedPuzzle, int hardmode, int numberOfEmptyCells, int secondsElapsed, int score)
         {
             InitializeComponent();
             InitializeGUI();
-            
+
+            this.harmode = hardmode;
+            this.numberOfEmptyCells = numberOfEmptyCells;
+            this.secondsElapsed = secondsElapsed;
+            this.score = score;
+
             if(savedSudoku != null && savedPuzzle != null)
             {
                 CreatePlayGround(playGroundGrid, savedPuzzle);
+
             }
             else
             {
@@ -448,6 +454,7 @@ namespace sudoku
             if(result == true)
             {
                 Tools.AddSave(harmode, secondsElapsed,score, sudoku, puzzle);
+                Close();
             }
             else
             {

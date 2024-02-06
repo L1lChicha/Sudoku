@@ -62,7 +62,6 @@ namespace sudoku
                 {
                     LevelSelect levelSelect = new LevelSelect();
                     levelSelect.ShowDialog();
-                    Close();
                 }
 
                 
