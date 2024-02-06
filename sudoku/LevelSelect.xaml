@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
        
-        Title="LevelSelect" Height="273" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" BorderBrush="Black">
+        Title="LevelSelect" Height="273" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" AllowsTransparency="True"    WindowStyle="None" BorderBrush="Black">
+    
+
+
+
+
     <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
         
         <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2"/>

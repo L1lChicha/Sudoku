@@ -5,20 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="DownloadOrDelete" Height="450" Width="400">
+        Icon = "D:\jv laby\sudoku\icon.png"
+        Title="DownloadOrDelete" Height="280" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <Border BorderBrush="Black"  Height="280" BorderThickness="2" CornerRadius="2"/>
+        <StackPanel Orientation="Vertical" >
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20">
-                <Label Content="You want download or delete this save?" FontSize="15"></Label>
+                <Label Content="You want download &#xD;&#xA;or delete this save?" FontSize="22" Height="65"></Label>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="20, 100">
-                <Button Content="Download" Background="#FF2AAC0A" BorderBrush="#FF2AAC0A" Click="Download_Click"></Button>
-                <Button Content="Delete" Margin="40, 0" Background="#FFCB380F" BorderBrush="#FFCB380F" Click="Delete_Click"></Button>
-                <Button Content="Exit" Click="Exit_Click"></Button>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0">
+                <Button Content="Download" Background="#FF2AAC0A" BorderBrush="#FF2AAC0A" Click="Download_Click" Width="160" Height="60"></Button>
+                <Button Content="Delete"  Background="#FFCB380F" BorderBrush="#FFCB380F" Click="Delete_Click" Width="160" Height="60" HorizontalAlignment="Center" Margin="30,0,0,0"></Button>
+            </StackPanel>
+            <StackPanel >
+                <Button Content="Exit" Click="Exit_Click" Width="160" Height="60" Margin="0,20,0,30"></Button>
             </StackPanel>
             
         </StackPanel>
+        
     </Grid>
 </Window>

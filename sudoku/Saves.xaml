@@ -5,17 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="Saves" Height="450" Width="500">
+        Icon = "D:\jv laby\sudoku\icon.png"
+        Title="Saves" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
-        <ListView Name="ListViewSaves" Margin="10">
+        <StackPanel HorizontalAlignment="Center" Height="377">
+            <StackPanel>
+                <ListView Name="ListViewSaves" Margin="10" FontSize="16" Height="368">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Position" Width="130" DisplayMemberBinding="{Binding position}" />
-                    <GridViewColumn Header="Hardmode" Width="130" DisplayMemberBinding="{Binding hardmode}" />
-                    <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding time}" />
-                    <GridViewColumn Header="Score" Width="100" DisplayMemberBinding="{Binding score}" />
+                    <GridViewColumn  Header="Position" Width="125" DisplayMemberBinding="{Binding position}" />
+                    <GridViewColumn Header="Hardmode" Width="145" DisplayMemberBinding="{Binding hardmode}" />
+                    <GridViewColumn Header="Time" Width="130" DisplayMemberBinding="{Binding time}" />
+                    <GridViewColumn Header="Score"  Width="130" DisplayMemberBinding="{Binding score}" />
                 </GridView>
             </ListView.View>
         </ListView>
+            </StackPanel>
+            
+        </StackPanel>
+        
+        <StackPanel Height="60" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,350,0,0" >
+            <Button x:Name="newSudokuButton" Content="New Sudoku" Height="60" Width="160" Click="newSudokuButton_Click"/>
+            <Button x:Name="exitButton" Content="Exit" Width="160" Height="60" Margin="100,0,0,0" Click="exitButton_Click"/>
+
+        </StackPanel>
+        <Border Height="450" BorderBrush="Black" BorderThickness="2" CornerRadius="2"/>
+
     </Grid>
 </Window>

@@ -57,6 +57,7 @@ namespace sudoku
                 Tools.choosenSave = allCurrentSaves[selectedSave.position - 1];
                 DownloadOrDelete choose = new DownloadOrDelete(this);
 
+                listView.SelectedItem = null;
                 choose.ShowDialog();
             }
         }
@@ -69,6 +70,16 @@ namespace sudoku
             public int time { get; set; }
 
             public int score { get; set; }
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void newSudokuButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
