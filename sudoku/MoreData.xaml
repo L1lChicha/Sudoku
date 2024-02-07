@@ -27,8 +27,8 @@
 
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label Content="Average time" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="124"/>
-                <Label x:Name="AverageTimeLabel" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
+                <Label Content="Best time" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Height="104" Width="124"/>
+                <Label x:Name="BestTimeLabel" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="78" Height="93"/>
 
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -44,7 +44,7 @@
                 <Button Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Click"/>
             </StackPanel>
         </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="2" Margin="-15,0,15,0"/>
+        <Border BorderBrush="Black" BorderThickness="2"/>
 
     </Grid>
 </Window>

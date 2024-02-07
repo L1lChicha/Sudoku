@@ -74,12 +74,23 @@ namespace sudoku
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             Close();
         }
 
         private void newSudokuButton_Click(object sender, RoutedEventArgs e)
         {
-
+            LevelSelect levelSelect = new LevelSelect();
+            bool? result = levelSelect.ShowDialog();
+            if (result == true)
+            {
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                DialogResult = false;
+            }
         }
     }
 }

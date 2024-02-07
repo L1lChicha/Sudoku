@@ -19,7 +19,11 @@ namespace sudoku
         public MainWindow()
         {
             InitializeComponent();
-           
+
+            if(Tools.currentNickname != null)
+            {
+                nameTextBox.Text = Tools.currentNickname;
+            }
             
         }
 
@@ -50,21 +54,26 @@ namespace sudoku
             {
                 Tools.currentNickname = nameTextBox.Text;
 
+                bool? result;
                 if (Tools.CheckSaves())
                 {
                     Save[] currentSaves = Tools.GetCurrentSaves();
 
 
                     Saves currentSavesListView = new Saves(currentSaves);
-                    currentSavesListView.Show();
+                    result = currentSavesListView.ShowDialog();
+                    
                 }
                 else
                 {
                     LevelSelect levelSelect = new LevelSelect();
-                    levelSelect.ShowDialog();
+                    result = levelSelect.ShowDialog();
                 }
 
-                
+                if (result == true)
+                {
+                    Close();
+                }
             }
         }
 

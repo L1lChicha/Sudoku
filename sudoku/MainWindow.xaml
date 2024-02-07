@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
 
-            <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,169,0,0" VerticalAlignment="Top" Width="514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
+            <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,80,0,0" VerticalAlignment="Top" Width="514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
             <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Put your nickname" Height="83" TextWrapping="Wrap" Width="514" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLines="1"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="playButton" Content="PLAY" HorizontalAlignment="Center" Height="114" Width="326" FontSize="48" Click="playButton_Click" Margin="0,50,0,40"/>

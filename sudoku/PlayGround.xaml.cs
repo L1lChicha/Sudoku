@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 //строка 161
 
 namespace sudoku
@@ -44,20 +45,30 @@ namespace sudoku
         int harmode;
         int score;
         int secondsLastReply;
+        bool hintUsed = false;
 
-        public PlayGround(int[,] savedSudoku, int[,] savedPuzzle, int hardmode, int numberOfEmptyCells, int secondsElapsed, int score)
+        public PlayGround(int[,] savedSudoku, int[,] savedPuzzle, int savedHardmode, int savedNumberOfEmptyCells, int savedSecondsElapsed, int savedScore)
         {
             InitializeComponent();
             InitializeGUI();
 
-            this.harmode = hardmode;
-            this.numberOfEmptyCells = numberOfEmptyCells;
-            this.secondsElapsed = secondsElapsed;
-            this.score = score;
+            harmode = savedHardmode;
+            numberOfEmptyCells = savedNumberOfEmptyCells;
+            secondsElapsed = savedSecondsElapsed;
+            score = savedScore;
+            scoreLabel.Content = score;
 
             if(savedSudoku != null && savedPuzzle != null)
             {
+                Array.Copy(savedSudoku, sudoku, savedSudoku.Length);
+                Array.Copy(savedPuzzle, puzzle, savedPuzzle.Length);
+
                 CreatePlayGround(playGroundGrid, savedPuzzle);
+
+                string arrayAsString = string.Join(",", savedSudoku.Cast<int>());
+                string arrayAsString2 = string.Join(",", savedPuzzle.Cast<int>());
+                MessageBox.Show(arrayAsString + "");
+                MessageBox.Show(arrayAsString2 + "");
 
             }
             else
@@ -168,49 +179,56 @@ namespace sudoku
             secondsLastReply = secondsElapsed - secondsLastReply;
             int tempScore = 0;
 
-            switch (condition)
+            if (hintUsed)
             {
-                case 1:
-                    if (secondsLastReply < 5)
-                    {
-                        tempScore = tempScore + (75 * secondsLastReply * harmode);
-                    }
-                    else if (secondsLastReply < 15 && secondsLastReply > 5)
-                    {
-                        tempScore = tempScore + (50 * (secondsLastReply / 2) * harmode);
-                    }
-                    else if (secondsLastReply < 30 && secondsLastReply > 15)
-                    {
-                        tempScore = tempScore + (25 * (secondsLastReply / 3) * harmode);
-                    }
-                    else
-                    {
-                        tempScore = tempScore + (50 * harmode);
-                    }
-                    break;
-                case -1:
-                    if (secondsLastReply < 5)
-                    {
-                        tempScore = tempScore - (50 * harmode);
-                    }
-                    else if (secondsLastReply < 15 && secondsLastReply > 5)
-                    {
-                        tempScore = tempScore - (25 * (secondsLastReply / 3) * harmode);
-                    }
-                    else if (secondsLastReply < 30 && secondsLastReply > 15)
-                    {
-                        tempScore = tempScore - (50 * (secondsLastReply / 2) * harmode);
-                    }
-                    else
-                    {
-                        tempScore = tempScore - (75 * (int)(secondsLastReply / 1.5) * harmode);
-                    }
-                    break;
+                scoreLabel.Content = score - 100;
+                hintUsed = false;
+                score = score - 100;
             }
-
-            score += tempScore;
-
-            scoreLabel.Content = score;
+            else
+            {
+                switch (condition)
+                {
+                    case 1:
+                        if (secondsLastReply < 5)
+                        {
+                            tempScore = tempScore + (75 * secondsLastReply * harmode);
+                        }
+                        else if (secondsLastReply < 15 && secondsLastReply > 5)
+                        {
+                            tempScore = tempScore + (50 * (secondsLastReply / 2) * harmode);
+                        }
+                        else if (secondsLastReply < 30 && secondsLastReply > 15)
+                        {
+                            tempScore = tempScore + (25 * (secondsLastReply / 3) * harmode);
+                        }
+                        else
+                        {
+                            tempScore = tempScore + (50 * harmode);
+                        }
+                        break;
+                    case -1:
+                        if (secondsLastReply < 5)
+                        {
+                            tempScore = tempScore - (50 * harmode);
+                        }
+                        else if (secondsLastReply < 15 && secondsLastReply > 5)
+                        {
+                            tempScore = tempScore - (25 * (secondsLastReply / 3) * harmode);
+                        }
+                        else if (secondsLastReply < 30 && secondsLastReply > 15)
+                        {
+                            tempScore = tempScore - (50 * (secondsLastReply / 2) * harmode);
+                        }
+                        else
+                        {
+                            tempScore = tempScore - (75 * (int)(secondsLastReply / 1.5) * harmode);
+                        }
+                        break;
+                }
+                score += tempScore;
+                scoreLabel.Content = score;
+            }
         }
 
 
@@ -445,6 +463,69 @@ namespace sudoku
             }
         }
 
+        private void Hint_Click(object sender, RoutedEventArgs e)
+        {
+            hintUsed = true;
+            Random random = new Random();
+
+            bool notZero = true;
+            do
+            {
+                int row = random.Next(0, 9);
+                int col = random.Next(0, 9);
+
+                if (puzzle[row, col] == 0)
+                {
+                    currentButtonRow = row;
+                    currentButtonCol = col;
+
+                    Border border = (Border)playGroundGrid.Children[row * 9 + col];
+                    Button button = (Button)border.Child;
+
+                    currentButton = button;
+                    currentButton.Background = Brushes.LightBlue;
+
+                    if (previousButton != null && previousButton.Background != Brushes.Red)
+                    {
+                        previousButton.Background = Brushes.White;
+
+                    }
+                    else if (previousButton != null && previousButton.Background == Brushes.Red)
+                    {
+                        previousButton.Background = Brushes.Red;
+                    }
+
+                    if (currentButton != null)
+                    {
+                        previousButton = currentButton;
+                    }
+                    TryPutNumInButton(sudoku[row, col]);
+
+                    
+                    notZero = false;
+                }
+            } while (notZero);
+        }
+
+        private int[,] CheckForMistakes(int[,] array)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for(int j = 0; j < 9; j++)
+                {
+                    Border border = (Border)playGroundGrid.Children[i * 9 + j];
+                    Button button = (Button)border.Child;
+
+                    if (button.Background == Brushes.Red)
+                    {
+                        array[i, j] = 0;
+                    }
+                }
+            }
+
+            return array;
+        }
+
         private void Exit_Click(object sender, EventArgs e)
         {
             Pause();
@@ -453,7 +534,9 @@ namespace sudoku
 
             if(result == true)
             {
-                Tools.AddSave(harmode, secondsElapsed,score, sudoku, puzzle);
+                Tools.AddSave(harmode, secondsElapsed,score, sudoku, CheckForMistakes(puzzle));
+                MainWindow main = new MainWindow();
+                main.Show();
                 Close();
             }
             else

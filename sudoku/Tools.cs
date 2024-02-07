@@ -20,6 +20,8 @@ namespace sudoku
 
         public static Save choosenSave;
 
+        public static int test = -1;
+
 
         public static void AddInformation(int time, int score, int hardmode)
         {
@@ -127,10 +129,10 @@ namespace sudoku
                 switch (hardmode)
                 {
                     case 1:
-                        writer.WriteLine($"{currentNickname},1,0,0,{time},{score}");
+                        writer.WriteLine($"{currentNickname},1,0,0,0,{score}");
                         break;
                     case 2:
-                        writer.WriteLine($"{currentNickname},0,1,0,{time},{score}");
+                        writer.WriteLine($"{currentNickname},0,1,0,0,{score}");
                         break;
                     case 3:
                         writer.WriteLine($"{currentNickname},0,0,1,{time},{score}");
