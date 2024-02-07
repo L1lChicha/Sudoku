@@ -30,7 +30,7 @@ namespace sudoku
 
         private void easyLevelButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround(null, null, 1, 1, 0, 1000);
+            PlayGround playGround = new PlayGround(null, null, 1, 15, 0, 1000);
             playGround.Show();
 
             DialogResult = true;
@@ -48,7 +48,7 @@ namespace sudoku
 
         private void hardLevelButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayGround playGround = new PlayGround(null, null, 3, 1, 0, 1000);
+            PlayGround playGround = new PlayGround(null, null, 3, 40, 0, 1000);
             playGround.Show();
 
             DialogResult = true;

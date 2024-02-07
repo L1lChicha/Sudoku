@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sudoku"
         mc:Ignorable="d"
-        Title="FinalWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None">
+        Title="FinalWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2"/>
         <StackPanel>
