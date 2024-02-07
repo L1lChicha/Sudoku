@@ -78,8 +78,16 @@ namespace sudoku
             easyLevelCountLabel.Content = player.GetEasyLevel();
             middleLevelCountLabel.Content = player.GetMiddleLevel();
             hardLevelCountLabel.Content = player.GetHardLevel();
-            bestTimeLabel.Content = player.GetBestTime();
             scoreLabel.Content = player.GetScore();
+
+            if (player.GetBestTime() < 3600)
+            {
+                bestTimeLabel.Content = TimeSpan.FromSeconds(player.GetBestTime()).ToString(@"mm\:ss");
+            }
+            else
+            {
+                bestTimeLabel.Content = TimeSpan.FromSeconds(player.GetBestTime()).ToString(@"hh\:mm\:ss");
+            }
         }
     }
 }

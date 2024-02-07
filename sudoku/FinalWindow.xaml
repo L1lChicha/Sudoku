@@ -21,13 +21,13 @@
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0">
-                <Label Content="xxxx" FontSize="36" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Label Content="xxxx" FontSize="36" Margin="100,0,0,0" Width="120" HorizontalContentAlignment="Center"/>
-                <Label Content="xxxx" FontSize="36" Margin="100,0,0,0" Width="120" HorizontalContentAlignment="Center"/>
+                <Label x:Name="TimeLabel" Content="xxxx" FontSize="36" Width="120" Margin="-30, 0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="ScoreLabel" Content="xxxx" FontSize="36" Margin="80,0,0,0" Width="120" HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
+                <Label x:Name="DifficultyLabel" Content="xxxx" FontSize="36" Margin="100,0,0,0" Width="120" HorizontalContentAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="90" Width="159">
-                <Button Content="OK" Height="60" Width="160" />
+                <Button Content="OK" Height="60" Width="160" FontSize="25" Click="Ok_Click"/>
             </StackPanel>
         
         

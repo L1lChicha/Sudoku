@@ -169,7 +169,6 @@ namespace sudoku
                 currentButton.Background = Brushes.Red;
 
                 CalculateScore(-1);
-                //MessageBox.Show("Grid position:\n" + currentButtonRow + " " + currentButtonCol + "\nSudoku number:\n" + sudoku[currentButtonRow, currentButtonCol]);
             }
             
         }
@@ -235,13 +234,23 @@ namespace sudoku
         public void SudokuComplited()
         {
             timer.Stop();
-            timerLabel.Content = "Congratulations!!! " + secondsElapsed;
+            timerLabel.Content = "Congratulations!!!";
             pauseButton.IsEnabled = false;
+            exitButton.IsEnabled = false;
 
 
             Tools.AddInformation(secondsElapsed, score, harmode);
 
-            //Вызов окна для ильи
+            FinalWindow finalWindow = new FinalWindow(secondsElapsed, score, harmode);
+            bool? result = finalWindow.ShowDialog();
+
+            if (result == true)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                Close();
+            }
         }
 
 
