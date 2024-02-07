@@ -10,14 +10,16 @@
         Icon = "D:\jv laby\sudoku\icon.png">
     <Grid>
         <StackPanel>
-
-            <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,80,0,0" VerticalAlignment="Top" Width="514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
+            <StackPanel>
+                <Label Content="SUDOKU" HorizontalAlignment="Center" Height="146" Margin="0,50,0,0" Width="449" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" FontFamily="Arial Black"/>
             <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Put your nickname" Height="83" TextWrapping="Wrap" Width="514" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLines="1"/>
+
+            </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="playButton" Content="PLAY" HorizontalAlignment="Center" Height="114" Width="326" FontSize="48" Click="playButton_Click" Margin="0,50,0,40"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                 <Button x:Name="statisticsButton" Content="STATISTICS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="114" Width="325" FontSize="48" Click="statisticsButton_Click"/>
+                <Button x:Name="statisticsButton" Content="STATISTICS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="114" Width="325" FontSize="48" Click="statisticsButton_Click"/>
                 <Button x:Name="ranksButton" Content="RANKS" Height="114" Width="324" FontSize="48" Click="ranksButton_Click" Margin="56,0,0,0"/>
             </StackPanel>
 
@@ -28,6 +30,6 @@
 
 
     </Grid>
-   
+
 
 </Window>
