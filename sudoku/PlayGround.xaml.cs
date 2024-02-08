@@ -64,12 +64,6 @@ namespace sudoku
                 Array.Copy(savedPuzzle, puzzle, savedPuzzle.Length);
 
                 CreatePlayGround(playGroundGrid, savedPuzzle);
-
-                string arrayAsString = string.Join(",", savedSudoku.Cast<int>());
-                string arrayAsString2 = string.Join(",", savedPuzzle.Cast<int>());
-                MessageBox.Show(arrayAsString + "");
-                MessageBox.Show(arrayAsString2 + "");
-
             }
             else
             {
